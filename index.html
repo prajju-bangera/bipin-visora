@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visora | Premium Videography & Editing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 10L20 30L30 10" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 15L10 10L15 15" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>VISORA</span>
+            </a>
+
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home" class="active">HOME</a></li>
+                    <li><a href="#work">WORK</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#packages">PACKAGES</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="btn-book">Book Now</a>
+                <button class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Fullscreen Video Background -->
+        <div class="video-bg-container">
+            <video autoplay muted loop playsinline class="video-bg">
+                <source src="Website_Video_for_Editing_Videography.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="bg-glow"></div>
+        <div class="bg-glow-2"></div>
+
+        <section class="hero" id="home">
+            <div class="container hero-centered">
+                <div class="hero-content text-highlight-mode">
+                    <h1 class="reveal-text">Freelancing <br><span class="gradient-text">Videography & <br>Editing</span></h1>
+                    <p class="hero-description reveal-text">Capturing your moments with cinematic excellence. From promotional videos to corporate events, weddings to travel documentaries, I bring your vision to life with stunning visuals and compelling storytelling.</p>
+                    <div class="hero-btns reveal-text">
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                        <a href="#" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="work-section" id="work">
+            <!-- GSAP Animated Glow Orbs -->
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            
+            <!-- GSAP Floating Background Deco -->
+            <div class="work-deco-item deco-1"></div>
+            <div class="work-deco-item deco-2"></div>
+            
+            <div class="container">
+                <div class="section-header">
+                    <div class="title-icons">
+                        <svg class="title-icon lens-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+                        <h2 class="section-title">Latest Work</h2>
+                        <svg class="title-icon camera-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    </div>
+                    <p class="section-subtitle">Excellence in every frame</p>
+                </div>
+                <div class="work-grid">
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(45deg, #1e293b, #334155);"></div>
+                        <div class="work-info">
+                            <h3>Cinematic Commercial</h3>
+                            <p>Premium 4K production for luxury brands.</p>
+                        </div>
+                    </div>
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(135deg, #0f172a, #1e293b);"></div>
+                        <div class="work-info">
+                            <h3>Music Video Edits</h3>
+                            <p>Fast-paced rhythmic editing with VFX.</p>
+                        </div>
+                    </div>
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(225deg, #1e293b, #020617);"></div>
+                        <div class="work-info">
+                            <h3>Wedding Highlights</h3>
+                            <p>Capturing emotional moments beautifully.</p>
+                        </div>
+                    </div>
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(45deg, #334155, #1e293b);"></div>
+                        <div class="work-info">
+                            <h3>Documentary Film</h3>
+                            <p>Stunning narrative storytelling visuals.</p>
+                        </div>
+                    </div>
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(135deg, #020617, #1e293b);"></div>
+                        <div class="work-info">
+                            <h3>Social Media Ads</h3>
+                            <p>High-engagement short form content.</p>
+                        </div>
+                    </div>
+                    <div class="work-item glass">
+                        <div class="work-img" style="background: linear-gradient(225deg, #1e293b, #334155);"></div>
+                        <div class="work-info">
+                            <h3>Travel Vlogs</h3>
+                            <p>Breathtaking landscapes and transitions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="packages-section" id="packages">
+            <div class="container">
+                <div class="section-header">
+                    <div class="title-icons">
+                        <svg class="title-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                        <h2 class="section-title">Packages</h2>
+                        <svg class="title-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    </div>
+                    <p class="section-subtitle">Invest in your vision</p>
+                </div>
+
+                <div class="packages-grid">
+                    <!-- Basic Tier -->
+                    <div class="package-card glass">
+                        <div class="package-header">
+                            <h3>Starter</h3>
+                            <div class="price">$499<span>/project</span></div>
+                        </div>
+                        <ul class="package-features">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 2 Hours Shoot</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 4K Cinematic Edit</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Standard Color Grade</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 48h Delivery</li>
+                        </ul>
+                        <div class="package-footer">
+                            <a href="#contact" class="btn btn-outline">Choose Starter</a>
+                        </div>
+                    </div>
+
+                    <!-- Pro Tier -->
+                    <div class="package-card glass featured">
+                        <div class="popular-tag">Most Popular</div>
+                        <div class="package-header">
+                            <h3>Cinematic</h3>
+                            <div class="price">$1,299<span>/project</span></div>
+                        </div>
+                        <ul class="package-features">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Day Shoot</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Advanced Color Grading</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Sound Design & Mixing</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Drone Footage included</li>
+                        </ul>
+                        <div class="package-footer">
+                            <a href="#contact" class="btn btn-primary">Choose Cinematic</a>
+                        </div>
+                    </div>
+
+                    <!-- Elite Tier -->
+                    <div class="package-card glass">
+                        <div class="package-header">
+                            <h3>Brand Master</h3>
+                            <div class="price">$2,499<span>/project</span></div>
+                        </div>
+                        <ul class="package-features">
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Concept Development</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Multi-camera Setup</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Premium Motion Graphics</li>
+                            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full Commercial Rights</li>
+                        </ul>
+                        <div class="package-footer">
+                            <a href="#contact" class="btn btn-outline">Choose Brand</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
