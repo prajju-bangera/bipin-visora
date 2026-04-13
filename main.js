@@ -61,6 +61,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }, "-=0.5");
         }
 
+        // Hero Decoration Persistent Floating
+        if (document.querySelector(".floating-item")) {
+            gsap.to(".item-1", { x: 50, y: -80, duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            gsap.to(".item-2", { x: -60, y: 50, duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            gsap.to(".item-3", { scale: 1.2, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        }
+
+        // Hero Grid/Visual Scroll Parallax
+        if (document.querySelector(".hero-visual-bg")) {
+            gsap.to(".hero-visual-bg", {
+                scrollTrigger: {
+                    trigger: ".hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1.5
+                },
+                y: 150,
+                scale: 1.1,
+                opacity: 0.5
+            });
+        }
+
         // Scroll animations for sections
         if (document.querySelector(".work-item")) {
             gsap.from(".work-item", {
@@ -167,5 +189,55 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: "power1.inOut"
             });
         }
+
+        // Work Filtering Logic
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const workItems = document.querySelectorAll(".work-item");
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove("active"));
+                // Add active class to clicked button
+                btn.classList.add("active");
+
+                const filter = btn.dataset.filter;
+
+                workItems.forEach(item => {
+                    if (filter === "all" || item.dataset.category === filter) {
+                        gsap.to(item, {
+                            opacity: 1,
+                            scale: 1,
+                            display: "flex",
+                            duration: 0.5,
+                            ease: "power2.out"
+                        });
+                    } else {
+                        gsap.to(item, {
+                            opacity: 0,
+                            scale: 0.9,
+                            display: "none",
+                            duration: 0.3,
+                            ease: "power2.in"
+                        });
+                    }
+                });
+
+                // Refresh ScrollTrigger to account for layout changes
+                setTimeout(() => ScrollTrigger.refresh(), 500);
+            });
+        });
+
+        // Sticky Socials Visibility (Hide on Hero)
+        const stickySocials = document.querySelector(".sticky-socials");
+        if (stickySocials) {
+            ScrollTrigger.create({
+                trigger: ".hero",
+                start: "bottom 30%",
+                onEnter: () => stickySocials.classList.add("active"),
+                onLeaveBack: () => stickySocials.classList.remove("active")
+            });
+        }
     }
+
 });
