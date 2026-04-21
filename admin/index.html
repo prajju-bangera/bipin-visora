@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Visora</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .login-split-container {
+            width: 95%;
+            max-width: 800px;
+            height: auto;
+            min-height: 550px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            border-radius: 24px;
+        }
+
+        .login-left {
+            flex: 0.8;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .login-left::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(13, 87, 206, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .login-right {
+            flex: 1.2;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(25px);
+            padding: 3.5rem 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .admin-logo-large {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(174, 168, 223, 0.4));
+            transition: 0.4s;
+        }
+
+        .admin-logo-large:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 40px rgba(174, 168, 223, 0.6));
+        }
+
+        .login-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .login-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: white;
+        }
+
+        .input-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.1rem 1.4rem;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.4s;
+            outline: none;
+        }
+
+        .input-control:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 0 25px rgba(13, 87, 206, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0px;
+            cursor: pointer;
+            font-size: 1.1rem !important;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(13, 87, 206, 0.4);
+        }
+
+        .captcha-container {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .captcha-code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            letter-spacing: 5px;
+            color: var(--accent);
+            user-select: none;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            min-width: 110px;
+            text-align: center;
+        }
+
+        .captcha-input {
+            flex: 1;
+        }
+
+
+
+        @media (max-width: 900px) {
+            .login-split-container {
+                flex-direction: column;
+                height: auto;
+                max-width: 450px;
+                border-radius: 20px;
+            }
+            .login-left {
+                padding: 3rem 2rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .admin-logo-large {
+                width: 120px;
+            }
+            .login-right {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-split-container {
+                width: 95%;
+            }
+            .login-header h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decor -->
+    <div class="gradient-bg"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="login-split-container glass">
+        <!-- Left Side: Branding -->
+        <div class="login-left">
+            <img src="../assets/logo.png" alt="Visora Logo" class="admin-logo-large">
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="login-right">
+            <div class="login-header">
+                <h2>Admin Login</h2>
+                <p>Welcome back! Please enter your details.</p>
+            </div>
+
+            <form action="dashbaord.html">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="input-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" class="input-control" placeholder="Enter password" required>
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Security Verification</label>
+                    <div class="captcha-container">
+                        <div class="captcha-code" id="captchaBox">V9R4</div>
+                        <input type="text" class="input-control captcha-input" placeholder="Code" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary login-btn">
+                    Log In
+                </button>
+            </form>
+
+            <script>
+                // Simple Captcha Generation for demo
+                function generateCaptcha() {
+                    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+                    let code = "";
+                    for (let i = 0; i < 4; i++) {
+                        code += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    document.getElementById('captchaBox').innerText = code;
+                }
+                
+                // Password Toggle Logic
+                const togglePassword = document.querySelector('#togglePassword');
+                const password = document.querySelector('#password');
+
+                togglePassword.addEventListener('click', function (e) {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    
+                    // Toggle Icon
+                    if(type === 'text') {
+                        this.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+                    } else {
+                        this.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+                    }
+                });
+
+                window.onload = generateCaptcha;
+            </script>
+
+
+        </div>
+    </div>
+</body>
+</html>

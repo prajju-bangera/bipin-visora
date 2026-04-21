@@ -9,12 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     };
 
-    Promise.all([
-        loadComponent('footer-container', 'footer.html')
-    ]).then(() => {
-        initAnimations();
-        initMobileMenu();
-    });
+    initAnimations();
+    initMobileMenu();
 
     function initMobileMenu() {
         const toggle = document.querySelector('.mobile-toggle');
@@ -236,6 +232,114 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "bottom 30%",
                 onEnter: () => stickySocials.classList.add("active"),
                 onLeaveBack: () => stickySocials.classList.remove("active")
+            });
+        }
+
+        // --- NEW: Tech Stack Reveal Animation ---
+        if (document.querySelector(".tech-stack-section")) {
+            const techGroups = document.querySelectorAll(".tech-group");
+            
+            techGroups.forEach(group => {
+                const groupTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: group,
+                        start: "top 95%", // Trigger earlier
+                    }
+                });
+
+                // Cinematic Title Reveal
+                groupTl.from(group.querySelector(".tech-group-title"), {
+                    y: 20,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+
+                // Cards Reveal with a reliable stagger
+                groupTl.from(group.querySelectorAll(".tech-card"), {
+                    scale: 0.9,
+                    y: 30,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power2.out"
+                }, "-=0.3");
+            });
+        }
+
+        // --- NEW: Contact Reveal ---
+        if (document.querySelector(".contact-section")) {
+            gsap.from(".contact-bar", {
+                scrollTrigger: {
+                    trigger: ".contact-section",
+                    start: "top 95%",
+                },
+                y: 30,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 0.8,
+                ease: "power2.out",
+                clearProps: "all" // Ensure it's fully opaque and clear after anim
+            });
+        }
+        // --- NEW: Work Pagination Logic ---
+        const pageBtns = document.querySelectorAll('.page-num');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const pageCountText = document.querySelector('.page-count');
+        
+        let currentPage = 1;
+        const totalPages = 3;
+
+        function updatePagination() {
+            pageBtns.forEach((btn, index) => {
+                if (index + 1 === currentPage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            if (pageCountText) {
+                pageCountText.textContent = `Page ${currentPage} of ${totalPages}`;
+            }
+
+            // Simple animation for content change feel
+            gsap.to(".work-grid", {
+                opacity: 0,
+                y: 20,
+                duration: 0.3,
+                onComplete: () => {
+                    gsap.to(".work-grid", {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                        delay: 0.1
+                    });
+                }
+            });
+        }
+
+        pageBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                currentPage = index + 1;
+                updatePagination();
+            });
+        });
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updatePagination();
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updatePagination();
+                }
             });
         }
     }

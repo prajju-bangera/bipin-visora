@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Work | Visora Admin</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glass-card: rgba(255, 255, 255, 0.03);
+            --glass-input: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        .admin-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .admin-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .user-badge {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logout-btn {
+            color: #ff4d4d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        /* Upload Form Section */
+        .upload-section {
+            margin-bottom: 5rem;
+        }
+
+        .upload-card {
+            padding: 3rem;
+            border-radius: 24px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .admin-input, .admin-select {
+            width: 100%;
+            background: var(--glass-input);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .admin-select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .admin-select option {
+            background: #0a0a0a;
+            color: white;
+        }
+
+        .admin-input:focus, .admin-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(13, 87, 206, 0.2);
+        }
+
+        .btn-upload {
+            grid-column: span 2;
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 1rem;
+            border: none;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.6rem;
+            border-radius: 16px;
+            width: fit-content;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2.5rem;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 25px rgba(13, 87, 206, 0.3);
+        }
+
+        .dashboard-section {
+            display: none;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* View Section */
+        .work-management {
+            margin-bottom: 5rem;
+        }
+
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-card-admin {
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+        }
+
+        .work-card-admin:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card-preview {
+            height: 180px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-preview svg {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .category-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .card-details {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .action-btn.delete:hover {
+            background: #ff4d4d;
+            border-color: #ff4d4d;
+        }
+
+        .action-btn.edit:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .main-footer-admin {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .btn-upload {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <header class="admin-header glass">
+        <div class="dashboard-container header-content">
+            <img src="../assets/logo.png" alt="Visora Logo" style="height: 40px;">
+            <div class="admin-actions">
+                <span class="user-badge glass">Admin Portal</span>
+                <a href="index.html" class="logout-btn">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('upload')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                Add Work
+            </button>
+            <button class="tab-btn" onclick="switchTab('manage')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                View Works
+            </button>
+        </div>
+
+        <!-- Add Work Section -->
+        <section id="upload-section" class="dashboard-section upload-section active">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>Add New Work</h2>
+                    <p>Upload your latest cinematic projects to the gallery.</p>
+                </div>
+            </div>
+
+            <div class="upload-card glass">
+                <form class="form-grid" action="#" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Project Title</label>
+                        <input type="text" class="admin-input" placeholder="e.g. Luxury Wedding Film">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="admin-select">
+                            <option value="commercial">Commercial</option>
+                            <option value="music">Music Video</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="social">Social Media</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Video File</label>
+                        <input type="file" class="admin-input" accept="video/*" style="padding: 0.8rem;">
+                    </div>
+                    <div class="form-group">
+                        <label>Thumbnail Image</label>
+                        <input type="file" class="admin-input" accept="image/*" style="padding: 0.8rem;">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label>Short Description</label>
+                        <input type="text" class="admin-input" placeholder="e.g. Premium 4K production for luxury brands.">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-upload">
+                        Add to Portfolio
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path><polyline points="16 16 12 12 8 16"></polyline></svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- View/Manage Work Section -->
+        <section id="manage-section" class="dashboard-section work-management">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>Manage Works</h2>
+                    <p>Edit or remove existing videos from the portfolio grid.</p>
+                </div>
+            </div>
+
+            <div class="management-grid">
+                <!-- Sample Work Card 1 -->
+                <div class="work-card-admin glass">
+                    <div class="card-preview">
+                        <span class="category-tag">Commercial</span>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    </div>
+                    <div class="card-details">
+                        <div class="card-info">
+                            <h3>Luxury Brand Ad</h3>
+                            <p>Commercial • 4K</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                            <button class="action-btn delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Work Card 2 -->
+                <div class="work-card-admin glass">
+                    <div class="card-preview">
+                        <span class="category-tag">Wedding</span>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    </div>
+                    <div class="card-details">
+                        <div class="card-info">
+                            <h3>Elegant Highlights</h3>
+                            <p>Wedding • Cinematic</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                            <button class="action-btn delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Work Card 3 -->
+                <div class="work-card-admin glass">
+                    <div class="card-preview">
+                        <span class="category-tag">Social Media</span>
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                    </div>
+                    <div class="card-details">
+                        <div class="card-info">
+                            <h3>Trending Reel</h3>
+                            <p>Social • Viral</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="action-btn edit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                            <button class="action-btn delete"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer-admin">
+        <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2024 Visora Admin Panel. Designed for Precision.</p>
+    </footer>
+    <script>
+        function switchTab(tabId) {
+            // Remove active class from all buttons and sections
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.dashboard-section').forEach(section => section.classList.remove('active'));
+
+            // Add active class to selected button and section
+            if (tabId === 'upload') {
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+                document.getElementById('upload-section').classList.add('active');
+            } else {
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                document.getElementById('manage-section').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
