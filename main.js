@@ -89,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: 40,
                 stagger: 0.15,
                 duration: 0.8,
-                ease: "power2.out"
+                ease: "power2.out",
+                clearProps: "all"
             });
         }
 
@@ -184,6 +185,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 3,
                 ease: "power1.inOut"
             });
+
+            gsap.to(".phone-icon", {
+                rotation: 15,
+                repeat: -1,
+                yoyo: true,
+                duration: 2,
+                ease: "sine.inOut"
+            });
+
+            gsap.to(".mail-icon", {
+                y: -5,
+                repeat: -1,
+                yoyo: true,
+                duration: 1.5,
+                ease: "power1.inOut"
+            });
         }
 
         // Work Filtering Logic
@@ -199,28 +216,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const filter = btn.dataset.filter;
 
-                workItems.forEach(item => {
-                    if (filter === "all" || item.dataset.category === filter) {
-                        gsap.to(item, {
-                            opacity: 1,
-                            scale: 1,
-                            display: "flex",
-                            duration: 0.5,
-                            ease: "power2.out"
+                // 1. Fade out current items for a clean slate
+                gsap.to(workItems, {
+                    opacity: 0,
+                    scale: 0.9,
+                    y: 15,
+                    duration: 0.3,
+                    stagger: 0.05,
+                    onComplete: () => {
+                        // 2. Toggle display based on filter
+                        const toShow = [];
+                        workItems.forEach(item => {
+                            if (filter === "all" || item.dataset.category === filter) {
+                                item.style.display = "flex";
+                                toShow.push(item);
+                            } else {
+                                item.style.display = "none";
+                            }
                         });
-                    } else {
-                        gsap.to(item, {
-                            opacity: 0,
-                            scale: 0.9,
-                            display: "none",
-                            duration: 0.3,
-                            ease: "power2.in"
-                        });
+
+                        // 3. Shuffle in the new items with a premium stagger
+                        if (toShow.length > 0) {
+                            gsap.fromTo(toShow, 
+                                { opacity: 0, scale: 0.8, y: 30 },
+                                { 
+                                    opacity: 1, 
+                                    scale: 1, 
+                                    y: 0, 
+                                    duration: 0.6, 
+                                    stagger: 0.1, 
+                                    ease: "power3.out",
+                                    clearProps: "all"
+                                }
+                            );
+                        }
+
+                        // Refresh ScrollTrigger to account for layout changes
+                        ScrollTrigger.refresh();
                     }
                 });
-
-                // Refresh ScrollTrigger to account for layout changes
-                setTimeout(() => ScrollTrigger.refresh(), 500);
             });
         });
 
@@ -302,18 +336,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 pageCountText.textContent = `Page ${currentPage} of ${totalPages}`;
             }
 
-            // Simple animation for content change feel
-            gsap.to(".work-grid", {
+            // Cinematic shuffle animation for page change
+            const visibleItems = Array.from(document.querySelectorAll('.work-item')).filter(el => el.style.display !== 'none');
+            
+            gsap.to(visibleItems, {
                 opacity: 0,
-                y: 20,
+                scale: 0.95,
+                y: 15,
                 duration: 0.3,
+                stagger: 0.05,
                 onComplete: () => {
-                    gsap.to(".work-grid", {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.5,
-                        delay: 0.1
-                    });
+                    // Simulate content loading/shuffling
+                    gsap.fromTo(visibleItems, 
+                        { opacity: 0, scale: 0.8, y: 30 },
+                        { 
+                            opacity: 1, 
+                            scale: 1, 
+                            y: 0, 
+                            duration: 0.6, 
+                            stagger: 0.1, 
+                            ease: "power3.out",
+                            clearProps: "all"
+                        }
+                    );
                 }
             });
         }
@@ -342,6 +387,103 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // --- NEW: ScrollSpy Logic ---
+        const sections = ['home', 'about', 'work', 'contact'];
+        sections.forEach(id => {
+            ScrollTrigger.create({
+                trigger: `#${id}`,
+                start: "top center",
+                end: "bottom center",
+                onToggle: self => {
+                    if (self.isActive) {
+                        document.querySelectorAll('.desktop-nav a, .footer-links a').forEach(a => {
+                            if (a.getAttribute('href') === `#${id}`) {
+                                a.classList.add('active');
+                            } else if (a.getAttribute('href').startsWith('#')) {
+                                a.classList.remove('active');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+
+        // --- NEW: Dynamic Year Update ---
+        document.querySelectorAll('.current-year').forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+
+        // --- NEW: Cinematic Smooth Scroll ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                if (target === '#') return;
+
+                gsap.to(window, {
+                    duration: 1.5,
+                    scrollTo: {
+                        y: target,
+                        autoKill: true,
+                        offsetY: 70 // Adjust based on header height
+                    },
+                    ease: "power4.inOut"
+                });
+
+                // Close mobile menu if open
+                const nav = document.querySelector('.desktop-nav');
+                if (nav && nav.classList.contains('active-mobile')) {
+                    nav.classList.remove('active-mobile');
+                }
+            });
+        });
+
+        // --- NEW: Cinematic Word-by-Word Reveal ---
+        const aboutPara = document.querySelector('.about-fade-text');
+        if (aboutPara) {
+            // Robust regex to wrap words in spans while ignoring HTML tags
+            aboutPara.innerHTML = aboutPara.innerHTML.replace(/([^\s<>]+)(?![^<]*>)/g, '<span class="word-fade" style="display:inline-block;">$1</span>');
+
+            gsap.from(".word-fade", {
+                scrollTrigger: {
+                    trigger: ".about-fade-text",
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 10,
+                filter: "blur(5px)",
+                stagger: 0.03,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        }
+
+        // --- NEW: Consolidated Throw Effects ---
+        const throwElements = document.querySelectorAll('.throw-left, .throw-right, .throw-top, .throw-bottom');
+        throwElements.forEach(el => {
+            let x = 0, y = 0, rotation = 0;
+            
+            if (el.classList.contains('throw-left')) { x = -100; rotation = -15; }
+            if (el.classList.contains('throw-right')) { x = 100; rotation = 15; }
+            if (el.classList.contains('throw-top')) { y = -100; }
+            if (el.classList.contains('throw-bottom')) { y = 100; }
+
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 92%",
+                    toggleActions: "play none none none"
+                },
+                x: x,
+                y: y,
+                rotation: rotation,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+                clearProps: "all" // Ensure no transform/opacity stays after animation
+            });
+        });
     }
 
 });

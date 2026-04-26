@@ -10,26 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 </head>
 <body>
     <header class="main-header">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="assets/logo.png" alt="Visora Logo" style="height: 80px; width: auto;">
+                <img src="assets/logo.png" alt="Visora Logo" style="height: 45px; width: auto;">
             </a>
 
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#home" class="active">HOME</a></li>
-                    <li><a href="#work">WORK</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#packages">PACKAGES</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <!-- <li><a href="#contact">Contact Us</a></li> -->
                 </ul>
             </nav>
 
             <div class="header-actions">
-                <a href="#" class="btn-book">Book Now</a>
+                <a href="#contact" class="btn-book">Contact Now</a>
                 <button class="mobile-toggle">
                     <span></span>
                     <span></span>
@@ -79,31 +79,31 @@
                 
                 <div class="about-content">
                     <div class="about-text-container">
-                        <p>At <strong>Visora Digital Marketing</strong>, we believe every brand has the potential to stand out; it just needs the right strategy, creativity, and execution. We are a growth-focused digital marketing agency dedicated to helping businesses build a strong online presence and turn attention into real results. From managing Instagram pages and creating engaging content to running high-performance ad campaigns, we handle everything that helps your brand grow in today’s digital world. Our approach is simple: understand your brand, identify your audience, and create content and campaigns that actually connect. We don’t believe in random posting or guessing trends. Every reel, post, and ad is backed by strategy, creativity, and data.</p>
+                        <p class="about-fade-text">At <strong>Visora Digital Marketing</strong>, we believe every brand has the potential to stand out; it just needs the right strategy, creativity, and execution. We are a growth-focused digital marketing agency dedicated to helping businesses build a strong online presence and turn attention into real results. From managing Instagram pages and creating engaging content to running high-performance ad campaigns, we handle everything that helps your brand grow in today’s digital world. Our approach is simple: understand your brand, identify your audience, and create content and campaigns that actually connect. We don’t believe in random posting or guessing trends. Every reel, post, and ad is backed by strategy, creativity, and data.</p>
                         
                         <div class="specialties-grid">
-                            <div class="specialty-item glass">
+                            <div class="specialty-item glass throw-left">
                                 <div class="specialty-icon-box">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                                 </div>
                                 <h3>Social Media Management</h3>
                                 <p>(Instagram growth & consistency)</p>
                             </div>
-                            <div class="specialty-item glass">
+                            <div class="specialty-item glass throw-left">
                                 <div class="specialty-icon-box">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                                 </div>
                                 <h3>Content Creation</h3>
                                 <p>(Reels, Posts, Branding)</p>
                             </div>
-                            <div class="specialty-item glass">
+                            <div class="specialty-item glass throw-right">
                                 <div class="specialty-icon-box">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                                 </div>
                                 <h3>Paid Ads</h3>
                                 <p>(Meta Ads, Lead Gen & Conversions)</p>
                             </div>
-                            <div class="specialty-item glass">
+                            <div class="specialty-item glass throw-right">
                                 <div class="specialty-icon-box">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                                 </div>
@@ -119,21 +119,21 @@
                             <div class="tech-group">
                                 <h3 class="tech-group-title">Software <span class="gradient-text">we</span> Use For Editing</h3>
                                 <div class="tech-flow-row">
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-top">
                                         <div class="tech-icon-box pr-box">Pr</div>
                                         <span class="tech-name">Premiere Pro</span>
                                     </div>
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-bottom">
                                         <div class="tech-icon-box ae-box">Ae</div>
                                         <span class="tech-name">After Effects</span>
                                     </div>
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-left">
                                         <div class="tech-icon-box capcut-box">
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
                                         </div>
                                         <span class="tech-name">CapCut</span>
                                     </div>
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-right">
                                         <div class="tech-icon-box canva-box">
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4c1.105 0 2 .895 2 2s-.895 2-2 2-2-.895-2-2 .895-2 2-2zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"/></svg>
                                         </div>
@@ -145,19 +145,19 @@
                             <div class="tech-group">
                                 <h3 class="tech-group-title">Accessories <span class="gradient-text">we</span> Use</h3>
                                 <div class="tech-flow-row">
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-left">
                                         <div class="tech-icon-box accessory-box">
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                                         </div>
                                         <span class="tech-name">iPhone 15</span>
                                     </div>
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-top">
                                         <div class="tech-icon-box accessory-box">
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M5 12l7-7 7 7"></path><path d="M19 12H5"></path></svg>
                                         </div>
                                         <span class="tech-name">Mobile Gimbal</span>
                                     </div>
-                                    <div class="tech-card">
+                                    <div class="tech-card throw-right">
                                         <div class="tech-icon-box accessory-box">
                                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                                         </div>
@@ -268,9 +268,13 @@
         <!-- Contact Section -->
         <section class="contact-section" id="contact">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
-                    <p class="section-subtitle">Let's build something extraordinary together</p>
+                <div class="section-header centered">
+                    <div class="title-icons">
+                        <svg class="title-icon phone-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <h2 class="section-title">Contact Us</h2>
+                        <svg class="title-icon mail-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <p class="section-subtitle">Let's build together</p>
                 </div>
 
                 <div class="contact-grid">
@@ -280,13 +284,10 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                         </div>
                         <div class="contact-info">
-                            <span class="contact-label">Phone Numbers</span>
-                            <span class="contact-value">+91 74837 06316<br>+91 97314 94328</span>
+                            <span class="contact-label">Phone Number</span>
+                            <span class="contact-value" style="font-size: 1.05rem; font-weight: 600; color: rgba(255, 255, 255, 0.6);">+91 74837 06316, +91 97314 94328</span>
                         </div>
-                        <div style="display: flex; gap: 0.5rem; flex-direction: column;">
-                            <a href="tel:+917483706316" class="contact-btn">Call 1 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-                            <a href="tel:+919731494328" class="contact-btn">Call 2 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-                        </div>
+                        <a href="tel:+917483706316" class="contact-btn-pill">Call Now <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
                     </div>
 
                     <!-- Email Bar -->
@@ -295,25 +296,26 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                         </div>
                         <div class="contact-info">
-                            <span class="contact-label">Email Address</span>
+                            <span class="contact-label">Email</span>
                             <span class="contact-value">connect.visoraofficial@gmail.com</span>
                         </div>
-                        <a href="mailto:connect.visoraofficial@gmail.com" class="contact-btn">
-                            Send Email <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
+                        <a href="mailto:connect.visoraofficial@gmail.com" class="contact-btn-pill">Send Email <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
                     </div>
 
                     <!-- Social Bar -->
-                    <div class="contact-bar glass">
-                        <div class="contact-icon-box">
-                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        </div>
+                    <div class="contact-bar glass social-bar">
                         <div class="contact-info">
                             <span class="contact-label">Follow Us</span>
                             <div class="contact-social-icons">
-                                <a href="https://www.instagram.com/visoraofficial?igsh=MzN1NjJvdnA2cWh5" target="_blank" class="social-mini-link ig"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                                <a href="#" class="social-mini-link fb"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-                                <a href="#" class="social-mini-link yt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+                                <a href="https://www.instagram.com/visoraofficial?igsh=MzN1NjJvdnA2cWh5" target="_blank" class="social-block-link ig">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                </a>
+                                <a href="#" class="social-block-link fb">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                </a>
+                                <a href="#" class="social-block-link yt">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -327,24 +329,27 @@
         <div class="container footer-grid">
             <div class="footer-info">
                 <div class="logo">
-                    <img src="assets/logo.png" alt="Visora Logo" style="height: 90px; width: auto;">
+                    <img src="assets/logo.png" alt="Visora Logo" style="height: 45px; width: auto;">
                 </div>
                 <p>Capturing your moments with cinematic excellence. Premium digital marketing and content services.</p>
+                <div class="footer-contact">
+                    <p><span>Phone:</span> <a href="tel:+917483706316">+91 74837 06316</a>, <a href="tel:+919731494328">+91 97314 94328</a></p>
+                    <p><span>Email:</span> <a href="mailto:connect.visoraofficial@gmail.com">connect.visoraofficial@gmail.com</a></p>
+                </div>
             </div>
             
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#work">Work</a></li>
                     <li><a href="#about">About Us</a></li>
-                    <li><a href="#packages">Packages</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom container">
-            <p>&copy; 2024 Visora. Designed with precision.</p>
+            <p>&copy; <span class="current-year"></span> Visora. Designed with precision.</p>
         </div>
     </footer>
 
@@ -357,5 +362,12 @@
     </div>
 
     <script src="main.js"></script>
+    <script>
+        // Track Visitor
+        fetch('backend/track_visitor.php')
+            .then(response => response.json())
+            .then(data => console.log('Visitor tracked:', data.visitor_count))
+            .catch(err => console.error('Tracking error:', err));
+    </script>
 </body>
 </html>
